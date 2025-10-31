@@ -3,11 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Notes App</title>
+    <!--Font Awesome library-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Notes</h1>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input id="search-input" class="search-input" placeholder="Search notes">
+        </div>
+        <button id="newNote">New Note</button>
+    </header>
+
+    <main>
+        <aside id="list-item"></aside>
+        <section id="editor" class="hidden">
+            <input id="title" placeholder="title">
+            <textarea id="content" placeholder="Write your note here"></textarea>
+            <div class="editor-actions">
+                <input id="tags" placeholder="Tags separated by commas">
+                <button id="save-btn">Save</button>
+                <button id="delete-btn">Delete</button>
+                <button id="close-btn">Close</button>
+            </div>
+        </section>
+    </main>
+
     <script src="js/app.js"></script>
 </body>
 </html>

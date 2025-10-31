@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, Arial, Helvetica;
+}
+
+header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 12px;
+   border-bottom: 1px solid #ddd;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    margin-right: 30px;
+}
+
+.search-icon {
+    position: absolute;
+}
