@@ -4,24 +4,110 @@ html, body {
     font-family: system-ui, Arial, Helvetica;
 }
 
-header {
+.app-header {
+   background-color: #333;
+   color: white;
    display: flex;
    justify-content: space-between;
    align-items: center;
-   padding: 12px;
-   border-bottom: 1px solid #ddd;
+   padding: 15px 20px;
 }
 
-.search-container {
-    position: relative;
+.app-title {
+    margin: 0;
+}
+
+.header-controls {
     display: flex;
-    align-items: center;
+    gap: 10px;
 }
 
-.search-input {
-    margin-right: 30px;
+#searchInput {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
 }
 
-.search-icon {
-    position: absolute;
+#newNoteButton {
+    padding: 8px 15px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#newNoteButton:hover {
+    background-color: #0056b3;
+}
+
+.app-content {
+    display: flex;
+    flex-grow: 1;
+}
+
+.notes-list-sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+}
+
+.note-editor {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#noteTitle {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.2em;
+}
+
+#noteContentArea {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.editor-actions button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#saveNoteButton {
+    background-color: #28a745;
+    color: white;
+}
+
+#saveNoteButton:hover {
+    background-color: #218838;
+}
+
+#deleteNoteButton,
+#closeNoteButton {
+    background-color: #dc3545;
+    color: white;
+}
+
+#deleteNoteButton:hover,
+#closeNoteButton:hover {
+    background-color: #c82333;
 }
