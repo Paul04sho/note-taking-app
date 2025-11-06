@@ -26,7 +26,7 @@ main {
     height: calc(100% - 64px);
 }
 
-aside#list {
+aside#notes-list {
     width: 250px;
     border-right: 2px solid #eee;
     padding: 12px;
