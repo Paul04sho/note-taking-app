@@ -9,10 +9,10 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     background-color: #fff;
-    padding: 30px;
+    padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 120px;
@@ -38,7 +38,7 @@ body {
 
 .editor-actions {
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 #addBtn,
