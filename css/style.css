@@ -1,91 +1,77 @@
-html, body {
-    height: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
-    font-family: system-ui, Arial, Helvetica;
+    padding: 20px;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 80px;
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 120px;
 }
 
-.controls input {
-    width: 300px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 8px;
-}
-
-main {
-    display: flex;
-    height: calc(100% - 64px);
-}
-
-aside#notes-list {
-    width: 250px;
-    border-right: 2px solid #eee;
-    padding: 12px;
-    overflow: auto;
-    box-sizing: border-box;
-}
-
-section#editor {
-    flex: 1;
-    padding: 12px;
-    box-sizing: border-box;
-}
-
-section.hidden {
-    display: none;
-}
-
-#title {
+#note-form input,
+#note-form textarea {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 8px;
-}
-
-#content {
-    width: 100%;
-    height: 60vh;
-    padding: 8px;
-    margin-bottom: 8px;
-}
-
-.note-item {
     padding: 10px;
-    border-bottom: 1px solid #f0f0f0;
-    margin-bottom: 8px;
-    cursor: pointer;
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-.note-item .meta {
-    font-size: 12px;
-    color: #888;
+#note-form input {
+    font-size: 16px;
 }
 
-input, textarea, button {
-    font-size: 14px;
-    box-sizing: border-box;
+#note-form textarea {
+    resize: none;
+    font-size: 18px;
 }
 
 .editor-actions {
     display: flex;
-    gap: 8px;
-    align-items: center;
+    gap: 20px;
 }
 
-.app-note-tag {
-    display: inline-block;
-    padding: 2px 6px;
-    margin-right: 6px;
-    margin-top: 6px;
-    border-radius: 4px;
-    background: #f3f3f3;
-    font-size: 12px;
+#addBtn,
+#editBtn,
+#deleteBtn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#addBtn {
+    background-color: #008000;
+}
+
+#addBtn:hover {
+    background-color: #006400;
+}
+
+#editBtn {
+    background-color: #ffa500;
+}
+
+#editBtn:hover {
+    background-color: #ff8c00;
+}
+
+#deleteBtn {
+    background-color: #dc134c;
+}
+
+#deleteBtn:hover {
+    background-color: #c41e3a;
 }
