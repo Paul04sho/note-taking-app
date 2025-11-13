@@ -1,80 +1,59 @@
-// Global variables
-const storageKey = "notesAppData";
-let notes = [];
-let activeNoteId = null;
+// Variable Initialization
+const addNoteBtn = document.getElementById("add-note-btn");
+const newNote = document.getElementById("newNote");
+const notesContainer = document.getElementById("notes-container");
+const themeToggle = document.getElementById("toggle-theme-btn");
+const body = document.body;
 
-// Shortcut for selecting elements
-const element = id => document.getElementById(id);
+// Loading saved notes on page load
+window.addEventListener("load", () => {
+   const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
+   savedNotes.forEach((note, index) => createNoteElement(note, index));
+});
 
-// Saving notes to local storage
-function saveToStorage () {
-    localStorage.setItem(storageKey, JSON.stringify(notes));
-}
+// To add or update a note
+addNoteBtn.addEventListener("click", () => {
+   const noteText = newNote.value;
+   if (noteText.trim() === '') return;
 
-// Retrieving notes from local storage
-function loadFromStorage () {
-    const notesJSON = localStorage.getItem(storageKey);
+   if (editingNoteIndex !== null) {
+      updateNoteInLocalStorage(noteText, editingNoteIndex);
+      resetInput();
+   } else {
+      createNoteElement(noteText);
+      saveNoteToLocalStorage(noteText);
+   }
+   newNote.value = '';
+});
 
-    if (notesJSON) {
-        try {
-            notes = JSON.parse(notesJSON);
-            return notes;
-        } catch (error) {
-            console.error("Error parsing notes from local storage:", error);
-            return [];
-        }
-    }
-}
+// To create a note element
+function createNoteElement(text, index = null) {
+   const noteDiv = document.createElement('div');
+   noteDiv.classList.add('note-item');
 
-// Format timestamp into a readable string (to see the updates on each note chronologically)
-function formatDate (timestamp) {
-    const date = new Date(timestamp);
-    return date.toLocaleString();
-}
+   const noteText = document.createElement('pre');
+   noteText.textContent = text;
 
-// Render list of notes in the sidebar
-const renderList = filter => {
-    const listItem = element("notes-list");
-    listItem.innerHTML = "";
+   const editBtn = document.createElement('button');
+   editBtn.textContent = 'Edit';
+   editBtn.addEventListener("click", () => editNote(text, index || getNoteIndex(text)));
 
-// Filter and sort notes (being able to use the search functionality)
-const items = notes.filter(n => {
-    if (!filter) return true;
-    const search = filter.toLowerCase();
-    return n.title.toLowerCase().includes(search)
-    || n.content.toLowerCase().includes(search)
-    || (n.tags || []).join('').toLowerCase().includes(search);
-})
-.sort((a,b) => b.updated - a.updated);
+   const deleteBtn = document.createElement('button');
+   deleteBtn.textContent = 'Delete';
+   deleteBtn.addEventListener("click", () => {
+      noteDiv.remove();
+      deleteNoteFromLocalStorage(text);
+   });
 
-// Show message if no notes found 
-if (items.length === 0) {
-    const paragraph = document.createElement("div");
-    paragraph.textContent = "No notes found";
-    notes-list.appendChild(paragraph);
-    return;
-}
-
-// Render each note as a card in the list
-items.forEach(n => {
-    const item = document.createElement("div");
-    item.className = 'note-item';
-    item.dataset.id = n.id;
-
-    const itemTitle = document.createElement("div");
-    itemTitle.textContent = n.title || 'Untitled';
-    item.appendChild(itemTitle);
-
-    const meta = document.createElement("div");
-    meta.className = 'meta';
-    meta.textContent = formatDate(n.updated);
-    item.appendChild(meta);
-
-    // Click event to open note in editor
-    item.addEventListener("click", () => openEditor(n.id));
-    listItem.appendChild(item);
-})
+   noteDiv.appendChild(noteText);
+   noteDiv.appendChild(editBtn);
+   noteDiv.appendChild(deleteBtn);
+   notesContainer.appendChild(noteDiv);
 }
 
 
-
+// Switching to dark mode
+themeToggle.addEventListener("click", () => {
+   body.classList.toggle('dark');
+   themeToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
